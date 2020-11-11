@@ -1,0 +1,8 @@
+prefix=/home/tobi/Documenti/catkin_ws/devel
+
+Name: first_tutorial
+Description: Description of first_tutorial
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

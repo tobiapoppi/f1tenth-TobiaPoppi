@@ -1,0 +1,2 @@
+autoturtle:first_tutorial
+-DCATKIN_DEVEL_PREFIX=/home/tobi/Documenti/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tobi/Documenti/catkin_ws/install -G Unix Makefiles
