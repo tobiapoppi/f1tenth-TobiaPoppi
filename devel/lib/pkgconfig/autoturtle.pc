@@ -1,8 +1,0 @@
-prefix=/home/tobi/Documenti/catkin_ws/devel
-
-Name: autoturtle
-Description: Description of autoturtle
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
