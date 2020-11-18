@@ -7,7 +7,7 @@ from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 from turtlesim.srv import TeleportAbsolute
 
-class SwimSchool():
+class RandSwimSchool():
     #try to teleport the turtle with rosservice and givng the destination position gave by user.
     posizione = Pose()
     faseiniziale = True
@@ -77,6 +77,6 @@ class SwimSchool():
 
 if __name__ == '__main__':
     try:
-        SwimSchool()
+        RandSwimSchool()
     except:
         rospy.loginfo("End of the swim for this Turtle.")
