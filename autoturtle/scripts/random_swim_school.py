@@ -39,7 +39,7 @@ class RandSwimSchool():
 
         rate = rospy.Rate(300);
 
-        rospy.loginfo("Set rate 1Hz")
+        rospy.loginfo("Set rate 300Hz")
         move_cmd = Twist()
 
         move_cmd.linear.x = input("Linear velocity: ")
