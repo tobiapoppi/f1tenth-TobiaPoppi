@@ -57,7 +57,7 @@ class Square():
         rospy.on_shutdown(self.shutdown)
         self.cmd_vel = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
 
-        rate = rospy.Rate(300);
+        rate = rospy.Rate(300)
 
         rospy.loginfo("Set rate 300Hz")
         self.move_cmd = Twist()
