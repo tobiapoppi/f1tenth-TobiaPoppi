@@ -46,7 +46,7 @@ class Square():
 
         rospy.init_node('turtle_Square', anonymous=False)
 
-        length = input("Input float to determine quare's length: ")
+        length = input("Input float to determine square's length: ")
         self.changeBackground()
 
         killService = rospy.ServiceProxy('/kill', Kill)
@@ -55,13 +55,13 @@ class Square():
         spawnService(1, 1, 0, 'turtle1')
 
         rospy.on_shutdown(self.shutdown)
-        self.cmd_vel = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=5)
+        self.cmd_vel = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
 
         rate = rospy.Rate(300);
 
         rospy.loginfo("Set rate 300Hz")
         self.move_cmd = Twist()
-        self.move_cmd.linear.x = 2
+        self.rotate(0)
         self.move_cmd.angular.z = 0
 
         rospy.Subscriber('/turtle1/pose', Pose, self.update_pose)
@@ -73,11 +73,16 @@ class Square():
 
         while not rospy.is_shutdown():
             if isX:
+                scarto0 = 0
+                scarto2 = 0
+                if count == 0:
+                    scarto0 = (self.posizione.x - 1)
+                else:
+                    scarto2 = (self.posizione.x - 1 - length)
                 start = time.time()
                 travelled = 0 #distance travelled right now
-                print self.posizione.x
-                while (self.posizione.x < (lenght-0.005)):
-                    print self.posizione.x , 'ciao'
+
+                while ((self.posizione.x) <= (length + 1 + scarto2)) and ((self.posizione.x) >= ( 1 + scarto0)):
                     self.cmd_vel.publish(self.move_cmd)
                     end = time.time()
                     travelled = travelled + abs(self.move_cmd.linear.x * (end - start))
@@ -89,9 +94,15 @@ class Square():
                             self.move_cmd.linear.x = (self.move_cmd.linear.x * x)/100
                     rate.sleep()
             else:
+                scarto1 = 0
+                scarto3 = 0
+                if count == 1:
+                    scarto1 = (self.posizione.y - 1)
+                else:
+                    scarto3 = (self.posizione.y - 1 - length)
                 start = time.time()
                 travelled = 0 #distance travelled right now
-                while travelled < length:
+                while ((self.posizione.y) <= (length + 1 + scarto3)) and ((self.posizione.y) >= (1 + scarto1)):
                     self.cmd_vel.publish(self.move_cmd)
                     end = time.time()
                     travelled = travelled + abs(self.move_cmd.linear.y * (end - start))
@@ -102,14 +113,13 @@ class Square():
                             x = (left*100)/(length*20/100)
                             self.move_cmd.linear.y = (self.move_cmd.linear.y * x)/100
                     rate.sleep()
-            print self.posizione.x
+            print self.posizione.x, self.posizione.y
             isX = not isX
             if count == 3:
                 count = 0
             else:
                 count += 1
             self.rotate(count)
-            print travelled
 
     def shutdown(self):
         rospy.loginfo("Stopping the turtle")
