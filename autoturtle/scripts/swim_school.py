@@ -23,7 +23,7 @@ class SwimSchool():
         init_pose.x = 5.54
         init_pose.y = 5.54
 
-        rate = rospy.Rate(300);
+        rate = rospy.Rate(300)
 
         rospy.loginfo("Set rate 1Hz")
         move_cmd = Twist()
