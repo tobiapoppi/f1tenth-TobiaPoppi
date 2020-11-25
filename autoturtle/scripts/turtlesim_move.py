@@ -50,7 +50,7 @@ class ControlTurtlesim():
         # pub = rospy.Publisher('topic_name', message class, queue_size=10)
 
 	    # Turtlesim will receive our messages 10 times per second.
-        rate = rospy.Rate(10);
+        rate = rospy.Rate(10)
         # Do not confuse this 10 with the queue_size = 10 above.
 	    # 10 Hz is fine as long as the processing does not exceed
         #   1/10 second.
